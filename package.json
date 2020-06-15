@@ -1,21 +1,36 @@
 {
-  "name": "ngResourceTutorial",
+  "name": "andar-bahar-casino",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/.bin/grunt start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rranjan306/andar-bahar-casino.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rranjan306/andar-bahar-casino/issues"
+  },
+  "homepage": "https://github.com/rranjan306/andar-bahar-casino#readme",
   "dependencies": {
+    "angular": "1.6.6",
+    "angular-ui-router": "0.3.2",
+    "bootstrap": "^4.5.0",
     "grunt": "^0.4.5",
+    "grunt-angular-templates": "^1.2.0",
+    "grunt-contrib-compass": "^1.1.1",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
+    "jquery": "^3.5.1",
     "load-grunt-tasks": "^3.5.2",
+    "lodash": "^4.17.15",
     "restangular": "^1.6.1"
   },
   "devDependencies": {

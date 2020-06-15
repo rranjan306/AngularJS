@@ -4,13 +4,13 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   //register the grunt task
-  grunt.registerTask('default', ['clean', 'concat:vendorjs', 'concat:js', 'concat:index', 'concurrent:target']);
-  grunt.registerTask('vendor', ['concat:vendorjs'])
+  grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'compass', 'concurrent:target']);
+  grunt.registerTask('vendor', ['concat:vendorjs', 'concat:vendorcss']);
 
   //configure the task
   grunt.initConfig({
-    concurrent:{
-      target:{
+    concurrent: {
+      target: {
           tasks: ['connect:server', 'watch'],
           options: {
             logConcurrentOutput: true
@@ -18,12 +18,19 @@ module.exports = function(grunt) {
       }
     },
 
-    clean:{
+    clean: {
       public: ['public'],
-      sourceFilesInBuild: ['public/js/app.js', 'public/js/vendor.js']
+      sourceFilesInBuild: ['public/js/app.js', 'public/js/vendor.js', 'public/css/vendor.css']
     },
-    concat:{
-      index:{
+    ngtemplates: {
+      app: {
+        cwd: 'src/app',
+        src: '**/*.html',
+        dest: 'public/js/app.templates.js'
+      }
+    },
+    concat: {
+      index: {
         src: ['src/index.html'],
         dest: 'public/index.html'
       },
@@ -32,11 +39,32 @@ module.exports = function(grunt) {
         dest: 'public/js/app.js'
       },
       vendorjs: {
-        src: ['node_modules/restangular/src/restangular.js'],
+        src: [
+          'node_modules/jquery/dist/jquery.min.js',
+          'node_modules/angular/angular.min.js',
+          'node_modules/lodash/lodash.min.js',
+          'node_modules/restangular/src/restangular.js',
+          'node_modules/angular-ui-router/release/angular-ui-router.min.js',
+          'node_modules/bootstrap/dist/js/bootstrap.min.js'
+        ],
         dest: 'public/js/vendor.js'
+      },
+      vendorcss: {
+        src: [
+          'node_modules/bootstrap/dist/css/bootstrap.min.css'
+        ],
+        dest: 'public/css/vendor.css'
       }
     },
-
+    compass: {
+      dist: {
+        options: {
+          sassDir: 'src/styles',
+          cssDir: 'public/css',
+          environment: 'production'
+        }
+      }
+    },
     // uglify:{
     //   js: {
     //     files: {

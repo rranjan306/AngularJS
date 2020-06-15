@@ -9,7 +9,7 @@ angular.module('app.login', [])
           main: {
             controller: 'LoginCtrl',
             controllerAs : 'vm',
-            template: '<span>Hello</span>'
+            templateUrl: 'login/login.tpl.html'
           }
         },
         data: {
@@ -19,5 +19,6 @@ angular.module('app.login', [])
   }])
 
   .controller('LoginCtrl', function() {
-    console.log('hello');
+    let vm = this;
+
   });
